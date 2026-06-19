@@ -1,1 +1,355 @@
+﻿/* Базовые настройки и переменные */
+:root {
+  --bg-color: #fbffc8;
+  --panel-bg: #c3fffa;
+  --text-main: #333333;
+  --accent: #007bff;
+  --up-gradient: linear-gradient(135deg, #42b883 0%, #2b7a58 100%);
+  --down-gradient: linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%);
+  --shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
 
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+body { background-color: var(--bg-color); color: var(--text-main); }
+
+/* Элементы управления (≥44px для тач-устройств) */
+input, select, button {
+  min-height: 44px;
+  padding: 0 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 100%;
+}
+button {
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+button:hover { opacity: 0.9; }
+button:disabled { background-color: #ccc; cursor: not-allowed; }
+
+/* Шапка сайта */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  background-color: var(--panel-bg);
+  box-shadow: var(--shadow);
+}
+.logo { font-size: 24px; font-weight: bold; }
+.main-nav a {
+  margin-left: 16px;
+  text-decoration: none;
+  color: var(--text-main);
+  padding: 8px;
+}
+.main-nav a.active { color: var(--accent); font-weight: bold; }
+
+/* Основная сетка Mobile First (<768px) */
+.layout {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.filter-panel {
+  background: var(--panel-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+.filter-group { margin-top: 16px; }
+.filter-group label { display: block; margin-bottom: 8px; font-size: 14px; }
+
+.pin-section, .widgets-section {
+  background: var(--panel-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+
+.input-group { margin-bottom: 16px; }
+.input-group label { display: block; margin-bottom: 8px; }
+.error-text { color: red; margin-top: 8px; font-size: 14px; display: none; }
+
+/* Сетка виджетов */
+.currency-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+/* Карточка-виджет (Погодный стиль) */
+.widget-card {
+  color: white;
+  padding: 24px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.widget-card.up { background: var(--up-gradient); }
+.widget-card.down { background: var(--down-gradient); }
+.widget-card h3 { font-size: 20px; opacity: 0.9; }
+.widget-card .rate { font-size: 36px; font-weight: bold; margin-top: 10px; }
+.widget-card .remove-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.2);
+  width: 32px;
+  min-height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  padding: 0;
+}
+
+/* Скелетон загрузки */
+.skeleton {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 16px;
+  min-height: 120px;
+}
+@keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* Адаптивность: Tablet (768px – 1023px) */
+@media (min-width: 768px) {
+  .currency-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .widget-card { width: calc(50% - 8px); }
+}
+
+/* Адаптивность: Desktop (≥ 1024px) */
+@media (min-width: 1024px) {
+  .layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    align-items: start; /* Важно для sticky */
+  }
+  .filter-panel {
+    position: sticky;
+    top: 24px; /* Фиксируем панель при скролле */
+  }
+  .widget-card { width: calc(33.333% - 11px); }
+}
+/* Блок отправки почты */
+.email-section {
+  background: var(--panel-bg);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-top: 24px;
+}
+
+/* Модальное окно (Полноэкранный фон) */
+.modal {
+  display: none; 
+  position: fixed; 
+  z-index: 2000; 
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.modal.show { display: flex; }
+
+/* Контент модального окна */
+.modal-content {
+  background-color: #ffffff;
+  padding: 24px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 650px;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.close-modal {
+  position: absolute;
+  right: 20px; top: 15px;
+  font-size: 28px; font-weight: bold; cursor: pointer; color: #aaa;
+}
+.close-modal:hover { color: #333; }
+
+.preview-body {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin: 20px 0;
+  background: #fdfdfd;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.modal-actions { display: flex; gap: 12px; justify-content: flex-end; }
+.secondary-btn { background-color: #6c757d; }
+
+.status-text { margin-top: 12px; font-weight: bold; display: none; padding: 10px; border-radius: 6px; }
+.status-success { background: #d4edda; color: #155724; display: block; }
+.status-error { background: #f8d7da; color: #721c24; display: block; }
+
+body.analytics-body {
+  background-color: #12161a !important;
+  color: #eaecef !important;
+  padding: 20px;
+}
+
+body.analytics-body .analytics-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #2b3139;
+  margin-bottom: 24px;
+}
+
+body.analytics-body .analytics-logo { 
+  font-size: 20px; 
+  font-weight: bold; 
+  color: #fcd535; 
+}
+
+body.analytics-body .back-btn {
+  background: #2b3139; 
+  color: white; 
+  text-decoration: none;
+  padding: 8px 16px; 
+  border-radius: 6px; 
+  font-size: 14px; 
+  transition: 0.2s;
+  width: auto;
+  min-height: auto;
+  line-height: normal;
+  display: inline-flex;
+  align-items: center;
+}
+body.analytics-body .back-btn:hover { background: #363c4e; }
+
+/* Панель управления */
+body.analytics-body .control-panel {
+  background: #1e2329; 
+  padding: 16px;
+  border-radius: 8px; 
+  margin-bottom: 20px;
+  display: flex; 
+  gap: 16px; 
+  align-items: center;
+}
+
+body.analytics-body .control-panel select {
+  background: #2b3139; 
+  color: white; 
+  border: 1px solid #474f57;
+  padding: 0 12px; 
+  border-radius: 6px; 
+  font-size: 15px; 
+  outline: none;
+  width: auto; /* Перебиваем 100% ширину из базовых стилей */
+}
+body.analytics-body .control-panel select:focus { border-color: #fcd535; }
+
+body.analytics-body .live-pulse {
+  font-size: 13px; 
+  color: #00c076;
+  animation: pulseBlur 2s infinite alternate;
+}
+
+/* Сетка дашборда */
+body.analytics-body .dashboard-layout {
+  display: grid; 
+  grid-template-columns: 1fr 300px; 
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  body.analytics-body .dashboard-layout { grid-template-columns: 1fr; }
+}
+
+/* Стили графика */
+body.analytics-body .chart-container {
+  background: #1e2329; 
+  padding: 20px; 
+  border-radius: 8px;
+  display: flex; 
+  flex-direction: column; 
+  gap: 14px;
+}
+
+body.analytics-body .chart-header { 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: baseline; 
+}
+
+body.analytics-body .live-price { 
+  font-size: 32px; 
+  font-weight: bold; 
+}
+
+body.analytics-body canvas {
+  background: #7b94ad; 
+  border: 1px solid #1f2a38;
+  border-radius: 6px; 
+  width: 100%; 
+  height: 350px;
+}
+
+/* Боковые карточки метрик */
+body.analytics-body .stats-container { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 16px; 
+}
+
+body.analytics-body .stat-card {
+  background: #99b3d3; 
+  padding: 16px; 
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+body.analytics-body .stat-label { 
+  font-size: 12px; 
+  color: #848e9c; 
+  text-transform: uppercase; 
+  margin-bottom: 6px; 
+}
+
+body.analytics-body .stat-value { 
+  font-size: 18px; 
+  font-weight: bold; 
+}
+
+@keyframes pulseBlur {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
