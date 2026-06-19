@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Все валюты | CurrWeather</title>
+  <link rel="stylesheet" href="./CSS/StyleSheet.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="logo">🌤️ CurrWeather</div>
+    <nav class="main-nav">
+      <a href="htmlpage.html">Главная</a>
+      <a href="all-currencies.html" class="active">Все валюты</a>
+      <a href="crypto-analytics.html">📊 Аналитика</a> </nav>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <aside class="filter-panel">
+      <h3>Фильтры и Сортировка</h3>
+      
+      <div class="filter-group">
+        <label for="search">Поиск по коду/названию:</label>
+        <input type="text" id="search" placeholder="Например, USD...">
+      </div>
+
+      <div class="filter-group">
+        <label for="sort">Сортировать по:</label>
+        <select id="sort">
+          <option value="code">По алфавиту (Код)</option>
+          <option value="rate">По курсу (Возрастание)</option>
+          <option value="rate-desc">По курсу (Убывание)</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      <section class="widgets-section">
+        <h2>Все доступные валюты</h2>
+        <div id="widgets-container" class="currency-grid">
+          </div>
+        <div id="error-message" class="error-text"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./Front/all-currencies.js"></script>
+</body>
+</html>

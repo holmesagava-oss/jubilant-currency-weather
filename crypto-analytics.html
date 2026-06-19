@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binance Live Analytics | CurrWeather</title>
+  <link rel="stylesheet" href="./CSS/StyleSheet.css">
+</head>
+<body class="analytics-body">
+
+  <header class="analytics-header">
+    <div class="analytics-logo">📈 Binance Real-Time Analytics</div>
+    <a href="htmlpage.html" class="back-btn">← На главную</a>
+  </header>
+
+  <div class="control-panel">
+    <label for="pair-selector" style="color: #848e9c;">Выберите инструмент:</label>
+    <select id="pair-selector">
+      <option value="BTCUSDT">BTCUSDT (Bitcoin / USDT)</option>
+      <option value="ETHUSDT">ETHUSDT (Ethereum / USDT)</option>
+      <option value="BNBUSDT">BNBUSDT (BNB / USDT)</option>
+      <option value="ETHBTC">ETHBTC (Ethereum / Bitcoin)</option>
+    </select>
+    <span class="live-pulse">● Живое обновление (3с)</span>
+  </div>
+
+  <div class="dashboard-layout">
+    <div class="chart-container">
+      <div class="chart-header">
+        <h2 id="current-pair-title" style="margin:0;">BTCUSDT</h2>
+        <div id="current-price-display" class="live-price">0.00</div>
+      </div>
+      <canvas id="liveChart" width="800" height="350"></canvas>
+    </div>
+
+    <div class="stats-container">
+      <div class="stat-card">
+        <div class="stat-label">Изменение за 24ч</div>
+        <div id="stat-change" class="stat-value" style="color: #00c076;">0.00%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Максимум (24ч)</div>
+        <div id="stat-high" class="stat-value">0.00</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Минимум (24ч)</div>
+        <div id="stat-low" class="stat-value">0.00</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Объем торгов (24ч)</div>
+        <div id="stat-volume" class="stat-value">0.00</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Количество сделок</div>
+        <div id="stat-count" class="stat-value">0</div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./Front/crypto-analytics.js"></script>
+</body>
+</html>

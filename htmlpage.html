@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Weather | Курсы валют</title>
+  <link rel="stylesheet" href="./CSS/StyleSheet.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="logo">💹 CurrencyWeather</div>
+    <nav class="main-nav">
+      <a href="#" class="active">Главная</a>
+      <a href="all-currencies.html">Все валюты</a>
+      <a href="crypto-analytics.html">📊 Аналитика</a> </nav>
+    </nav>
+  </header>
+
+  <div class="layout">
+    <aside class="filter-panel">
+      <h3>Фильтры и Сортировка</h3>
+      
+      <div class="filter-group">
+        <label for="search">Поиск по коду/названию:</label>
+        <input type="text" id="search" placeholder="Например, BTC...">
+      </div>
+
+      <div class="filter-group">
+        <label for="sort">Сортировать по:</label>
+        <select id="sort">
+          <option value="code">По алфавиту (Код)</option>
+          <option value="rate">По курсу (Возрастание)</option>
+          <option value="rate-desc">По курсу (Убывание)</option>
+        </select>
+      </div>
+    </aside>
+
+    <main class="content">
+      
+      <section class="pin-section">
+        <h2>Закрепить валюту</h2>
+        <form id="pin-form">
+          <div class="input-group">
+            <label for="currency-select">Выберите валюту для виджета:</label>
+            <select id="currency-select" required>
+              <option value="" disabled selected>Загрузка валют...</option>
+            </select>
+          </div>
+          <button type="submit" id="pin-btn">Добавить на панель</button>
+        </form>
+        <div id="error-message" class="error-text"></div>
+      </section>
+
+      <section class="widgets-section">
+        <h2>Мои виджеты</h2>
+        <div id="widgets-container" class="currency-grid">
+          </div>
+      </section>
+
+      <section class="email-section">
+        <h2>Отчет на почту</h2>
+        <p style="margin-bottom: 12px; font-size: 14px; color: #666;">
+          Сформировать и отправить отчет по выбранным (закрепленным) валютам.
+        </p>
+        <div class="input-group" style="max-width: 400px;">
+          <label for="recipient-email">Email получателя:</label>
+          <input type="email" id="recipient-email" placeholder="example@mail.com" required>
+        </div>
+        <button type="button" id="preview-email-btn" style="max-width: 250px; margin-top: 10px; background-color: #28a745;">
+          📊 Предпросмотр письма
+        </button>
+        <div id="email-status" class="status-text"></div>
+      </section>
+
+    </main>
+  </div>
+  
+<div id="preview-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" id="close-modal-cross">&times;</span>
+      <h2>Предпросмотр отчета</h2>
+      <div id="email-preview-body" class="preview-body">
+        </div>
+      <div class="modal-actions">
+        <button id="confirm-send-btn">🚀 Подтвердить и отправить</button>
+        <button id="close-modal-btn" class="secondary-btn">Отмена</button>
+      </div>
+    </div>
+  </div>
+  <script src="./Front/JavaScript.js"></script>
+</body>
+</html>
